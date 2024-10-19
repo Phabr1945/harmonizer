@@ -2,5 +2,27 @@
 name = "harmonizer"
 version = "0.1.0"
 edition = "2021"
+description = "Harmonize like JC"
+license = "AGPL-3.0"
+readme = "README.md"
+authors = ["Phabr1945 <mr.hacker120707@gmail.com>"]
+keywords = ["Harmonizer", "Jacob Collier"]
+repository = "https://github.com/Phabr1945/harmonizer"
 
 [dependencies]
+cpal = "0.15.0"
+dialoguer = "0.11.0"
+ringbuf = "0.3.2"
+dasp_interpolate = { version = "0.11.0", features = ["linear"] }
+dasp_signal = "0.11.0"
+
+# Release build optimizations
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+
+# The profile that 'cargo dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
